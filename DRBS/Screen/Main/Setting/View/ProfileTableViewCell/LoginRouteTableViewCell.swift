@@ -61,7 +61,8 @@ class LoginRouteTableViewCell: UITableViewCell {
 
     private func setupLayout() {
         containerView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.top.bottom.equalToSuperview().inset(10)
             $0.height.greaterThanOrEqualTo(50)
         }
         
@@ -96,12 +97,9 @@ class LoginRouteTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 }

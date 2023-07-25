@@ -33,10 +33,15 @@ class MyPageVC: UIViewController {
     
     func configureNav() {
         navigationItem.title = "마이페이지"
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor(red: 0.43, green: 0.19, blue: 0.92, alpha: 1.00)
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        //navigationItem.leftBarButtonItem
+        
+        let appearance = UINavigationBarAppearance().then {
+            $0.configureWithOpaqueBackground()
+            $0.backgroundColor = UIColor(red: 0.43, green: 0.19, blue: 0.92, alpha: 1.00)
+            $0.titleTextAttributes = [.foregroundColor: UIColor.white]
+            
+        }
+        
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.standardAppearance = appearance
@@ -46,13 +51,6 @@ class MyPageVC: UIViewController {
     }
 
 
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "ToSideMenu" {
-//            let sideMenuVC = segue.destination as! TestSideMenu
-//            present(sideMenuVC, animated: true)
-//
-//        }
-//
-//    }
+
 
 }
