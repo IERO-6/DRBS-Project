@@ -8,12 +8,13 @@ import AVFoundation
 
 protocol ProfileImageCellDelegate: AnyObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func didTapProfileImage(in cell: ProfileImageTableViewCell)
-    func didTapCapturePhoto(in cell: ProfileImageTableViewCell)
+    func openCamera(in cell: ProfileImageTableViewCell)
+    func openPhotoLibrary(in cell: ProfileImageTableViewCell)
     func showAlertGoToSetting(in cell: ProfileImageTableViewCell)
-    func openImagePicker(in cell: ProfileImageTableViewCell)
 }
 
-class ProfileImageTableViewCell: UITableViewCell, UIContextMenuInteractionDelegate {
+
+class ProfileImageTableViewCell: UITableViewCell {
     
     weak var delegate: ProfileImageCellDelegate?
     
@@ -28,10 +29,22 @@ class ProfileImageTableViewCell: UITableViewCell, UIContextMenuInteractionDelega
         $0.layer.masksToBounds = true
         $0.layer.borderColor = UIColor.lightGray.cgColor
         $0.layer.borderWidth = 0.5
-        $0.isUserInteractionEnabled = true
-        
-        let contextMenuInteraction = UIContextMenuInteraction(delegate: self)
-        $0.addInteraction(contextMenuInteraction)
+    }
+    
+    lazy var menuButton = UIButton().then {
+        $0.showsMenuAsPrimaryAction = true
+        $0.backgroundColor = .clear
+
+        let photoLibraryAction = UIAction(title: "사진 보관함", image: UIImage(systemName: "photo"), handler: { _ in
+            self.delegate?.openPhotoLibrary(in: self)
+        })
+
+        let capturePhotoAction = UIAction(title: "사진 찍기", image: UIImage(systemName: "camera"), handler: { _ in
+            self.openCamera()
+        })
+
+        let menu = UIMenu(title: "", children: [photoLibraryAction, capturePhotoAction])
+        $0.menu = menu
     }
     
     // MARK: - Initialization
@@ -42,13 +55,14 @@ class ProfileImageTableViewCell: UITableViewCell, UIContextMenuInteractionDelega
     }
     
     required init?(coder: NSCoder) {
-        fatalError("")
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Method & Action
     
     private func setupCell() {
         contentView.addSubview(profileImageView)
+        contentView.addSubview(menuButton)
 
         profileImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -56,14 +70,12 @@ class ProfileImageTableViewCell: UITableViewCell, UIContextMenuInteractionDelega
             $0.bottom.equalToSuperview().offset(-16)
             $0.width.height.equalTo(150)
         }
-
-        contentView.snp.makeConstraints {
-            $0.leading.trailing.equalTo(self)
-            $0.width.equalToSuperview()
-            $0.top.equalTo(profileImageView.snp.top).offset(-16)
-            $0.bottom.equalTo(profileImageView.snp.bottom).offset(16)
+        
+        menuButton.snp.makeConstraints {
+            $0.edges.equalTo(profileImageView)
         }
     }
+
 
     func setImage(_ image: UIImage) {
         profileImageView.image = image
@@ -74,38 +86,13 @@ class ProfileImageTableViewCell: UITableViewCell, UIContextMenuInteractionDelega
             self.setImage(image)
         }
     }
-    
-    @objc private func didTapProfileImageView() {
-        delegate?.didTapProfileImage(in: self)
-    }
-
-    @objc private func capturePhoto() {
-        delegate?.didTapCapturePhoto(in: self)
-    }
-    
-    // MARK: - UIContextMenuInteractionDelegate
-    
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-        print("contextMenuInteraction called")
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
-            let photoLibraryAction = UIAction(title: "사진 보관함", image: UIImage(systemName: "photo")) { _ in
-                self.delegate?.didTapProfileImage(in: self)
-            }
-            
-            let capturePhotoAction = UIAction(title: "사진 찍기", image: UIImage(systemName: "camera")) { _ in
-                self.openCamera()
-            }
-            
-            return UIMenu(title: "", children: [photoLibraryAction, capturePhotoAction])
-        }
-    }
 
     @objc private func openCamera() {
         AVCaptureDevice.requestAccess(for: .video) { [weak self] isAuthorized in
             guard let self = self else { return }
             if isAuthorized {
                 DispatchQueue.main.async {
-                    self.delegate?.openImagePicker(in: self)
+                    self.delegate?.openCamera(in: self)
                 }
             } else {
                 self.delegate?.showAlertGoToSetting(in: self)
@@ -125,13 +112,11 @@ class ProfileImageTableViewCell: UITableViewCell, UIContextMenuInteractionDelega
     
     // MARK: - override
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
     }
 }

@@ -96,7 +96,7 @@
 		EB8F4ECA2A529E7A00BA106E /* LoginRouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F4EC92A529E7A00BA106E /* LoginRouteTableViewCell.swift */; };
 		EB8F4ECC2A529E8D00BA106E /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F4ECB2A529E8D00BA106E /* NameTableViewCell.swift */; };
 		EB8F4ECE2A529EA400BA106E /* NickNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F4ECD2A529EA400BA106E /* NickNameTableViewCell.swift */; };
-		EB8F4ED02A529EB800BA106E /* PhoneNumebrTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F4ECF2A529EB800BA106E /* PhoneNumebrTableViewCell.swift */; };
+		EB8F4ED02A529EB800BA106E /* PhoneNumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F4ECF2A529EB800BA106E /* PhoneNumberTableViewCell.swift */; };
 		EB8F4ED22A529ECE00BA106E /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F4ED12A529ECE00BA106E /* AddressTableViewCell.swift */; };
 		EB8F4ED42A529F0500BA106E /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F4ED32A529F0500BA106E /* NotificationTableViewCell.swift */; };
 		EB8F4ED62A529F2100BA106E /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F4ED52A529F2100BA106E /* LocationTableViewCell.swift */; };
@@ -224,7 +224,7 @@
 		EB8F4EC92A529E7A00BA106E /* LoginRouteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouteTableViewCell.swift; sourceTree = "<group>"; };
 		EB8F4ECB2A529E8D00BA106E /* NameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
 		EB8F4ECD2A529EA400BA106E /* NickNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameTableViewCell.swift; sourceTree = "<group>"; };
-		EB8F4ECF2A529EB800BA106E /* PhoneNumebrTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumebrTableViewCell.swift; sourceTree = "<group>"; };
+		EB8F4ECF2A529EB800BA106E /* PhoneNumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberTableViewCell.swift; sourceTree = "<group>"; };
 		EB8F4ED12A529ECE00BA106E /* AddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
 		EB8F4ED32A529F0500BA106E /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		EB8F4ED52A529F2100BA106E /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
@@ -780,7 +780,7 @@
 				EB8F4EC92A529E7A00BA106E /* LoginRouteTableViewCell.swift */,
 				EB8F4ECB2A529E8D00BA106E /* NameTableViewCell.swift */,
 				EB8F4ECD2A529EA400BA106E /* NickNameTableViewCell.swift */,
-				EB8F4ECF2A529EB800BA106E /* PhoneNumebrTableViewCell.swift */,
+				EB8F4ECF2A529EB800BA106E /* PhoneNumberTableViewCell.swift */,
 				EB8F4ED12A529ECE00BA106E /* AddressTableViewCell.swift */,
 			);
 			path = ProfileTableViewCell;
@@ -960,7 +960,7 @@
 			files = (
 				21CFD10229BCA0D00060CEA7 /* CalendarVC.swift in Sources */,
 				18F8D3142A52AD4000CC451C /* UIColor+Extension.swift in Sources */,
-				EB8F4ED02A529EB800BA106E /* PhoneNumebrTableViewCell.swift in Sources */,
+				EB8F4ED02A529EB800BA106E /* PhoneNumberTableViewCell.swift in Sources */,
 				EB8F4EE42A52A41B00BA106E /* LocationDetailVC.swift in Sources */,
 				EB8F4EBF2A529D9A00BA106E /* LicenseCell.swift in Sources */,
 				21CFD0C829BC54E60060CEA7 /* MainVC.swift in Sources */,
