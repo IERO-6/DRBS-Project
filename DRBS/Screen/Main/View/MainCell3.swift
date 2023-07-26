@@ -1,25 +1,30 @@
+//
+//  MainCell3.swift
+//  DRBS
+//
+//  Created by 김성호 on 2023/07/21.
+//
 
 import UIKit
+import Then
+import SnapKit
 
-class MainCell: UITableViewCell {
-    //MARK: - Properties
-    let backgroundUIView: UIView = {
-       let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.darkGray.cgColor
-        view.layer.cornerRadius = 8
-        return view
-    }()
 
+class MainCell3: UICollectionViewCell {
+    //    //MARK: - Properties
+    let backgroundUIView = UIView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .white
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.darkGray.cgColor
+        $0.layer.cornerRadius = 8
+    }
     
     //MARK: - LifeCycle
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         configureUI()
         configureConstraints()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -27,7 +32,8 @@ class MainCell: UITableViewCell {
     }
     
     
-    //MARK: - Helpers
+    
+    //    //MARK: - Helpers
     func configureUI() {
         self.addSubview(backgroundUIView)
     }
@@ -41,8 +47,13 @@ class MainCell: UITableViewCell {
             
         ])
     }
-    
-    //MARK: - Actions
-
-
+    //
+    // MARK: - Actions
+    //
+    //
+    override var isSelected: Bool {
+        didSet {
+            backgroundColor = isSelected ? .systemGray3 : .white
+        }
+    }
 }

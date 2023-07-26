@@ -255,21 +255,8 @@
                     <view key="view" contentMode="scaleToFill" id="DUO-KK-FZ8">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow2" translatesAutoresizingMaskIntoConstraints="NO" id="QnQ-Ta-SVl">
-                                <rect key="frame" x="174" y="312" width="45" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="Oia-zV-ViU"/>
-                                    <constraint firstAttribute="height" constant="45" id="i5f-nV-xn1"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="L0I-m1-PGr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="QnQ-Ta-SVl" firstAttribute="centerX" secondItem="DUO-KK-FZ8" secondAttribute="centerX" id="ZaD-wf-Bvm"/>
-                            <constraint firstItem="QnQ-Ta-SVl" firstAttribute="top" secondItem="L0I-m1-PGr" secondAttribute="top" constant="209" id="oqN-DY-gPp"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="whk-bb-MYQ">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="list.bullet" catalog="system" id="vJ3-jg-hmA">
@@ -279,9 +266,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="imageView" destination="QnQ-Ta-SVl" id="gI1-4Q-pca"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X5f-aT-YxT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -445,10 +429,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="I0f-Yh-jZB"/>
+        <segue reference="VPC-ne-Nmk"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="arrow2" width="256" height="256"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="checklist" width="20" height="24.5"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
