@@ -5,7 +5,7 @@ import UIKit
 import Then
 import SnapKit
 
-class PhoneNumebrTableViewCell: UITableViewCell {
+class PhoneNumberTableViewCell: UITableViewCell {
     
     static let id = "PhoneNumberCell"
     

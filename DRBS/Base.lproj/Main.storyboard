@@ -304,14 +304,7 @@
                         <viewLayoutGuide key="safeArea" id="jI3-x5-5Ku"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="DRBS" id="d6x-39-4WF">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="list.bullet" catalog="system" id="L8X-z7-lAp">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <segue destination="tGf-dQ-0Zn" kind="show" identifier="ToSideMenu" id="Y5U-57-dbo"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="DRBS" id="d6x-39-4WF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aJv-KA-x1y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

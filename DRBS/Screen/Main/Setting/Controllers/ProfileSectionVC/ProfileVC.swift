@@ -8,12 +8,25 @@ import AVFoundation
 
 class ProfileVC: UIViewController, ProfileImageCellDelegate {
     
-    func openImagePicker(in cell: ProfileImageTableViewCell) {
+    func openCamera(in cell: ProfileImageTableViewCell) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let pickerController = UIImagePickerController()
+            pickerController.sourceType = .camera
+            pickerController.delegate = self
+            self.present(pickerController, animated: true)
+        } else {
+            // 카메라를 사용할 수 없는 경우에 대한 처리
+        }
+    }
+
+    func openPhotoLibrary(in cell: ProfileImageTableViewCell) {
         let pickerController = UIImagePickerController()
         pickerController.sourceType = .photoLibrary
         pickerController.delegate = self
         self.present(pickerController, animated: true)
     }
+
+
 
     
     
@@ -24,10 +37,10 @@ class ProfileVC: UIViewController, ProfileImageCellDelegate {
         $0.register(LoginRouteTableViewCell.self, forCellReuseIdentifier: LoginRouteTableViewCell.id)
         $0.register(NameTableViewCell.self, forCellReuseIdentifier: NameTableViewCell.id)
         $0.register(NickNameTableViewCell.self, forCellReuseIdentifier: NickNameTableViewCell.id)
-        $0.register(PhoneNumebrTableViewCell.self, forCellReuseIdentifier: PhoneNumebrTableViewCell.id)
+        $0.register(PhoneNumberTableViewCell.self, forCellReuseIdentifier: PhoneNumberTableViewCell.id)
         $0.register(AddressTableViewCell.self, forCellReuseIdentifier: AddressTableViewCell.id)
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.estimatedRowHeight = UITableView.automaticDimension
+        $0.estimatedRowHeight = 182
         $0.rowHeight = UITableView.automaticDimension
         $0.separatorStyle = .none
         $0.alwaysBounceVertical = true
@@ -94,7 +107,7 @@ class ProfileVC: UIViewController, ProfileImageCellDelegate {
     
     private func configureNav() {
         navigationItem.title = "프로필 설정"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(saveButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(saveButtonTapped))
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         
         let appearance = UINavigationBarAppearance().then {
@@ -307,12 +320,15 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
                 cell.configure(with: models[indexPath.row])
                 return cell
             case .phoneNumber(let models):
-                let cell = tableView.dequeueReusableCell(withIdentifier: PhoneNumebrTableViewCell.id, for: indexPath) as! PhoneNumebrTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: PhoneNumberTableViewCell.id, for: indexPath) as! PhoneNumberTableViewCell
                 cell.selectionStyle = .none
                 cell.configure(with: models[indexPath.row])
                 return cell
-            default:
-                return UITableViewCell()
+            case .address(let models):
+                let cell = tableView.dequeueReusableCell(withIdentifier: AddressTableViewCell.id, for: indexPath) as! AddressTableViewCell
+                cell.selectionStyle = .none
+                cell.configure(with: models[indexPath.row])
+                return cell
         }
     }
 
@@ -322,6 +338,10 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
         let titleLabel = UILabel()
         
         switch dataSource[section] {
+            case .profileImage(_):
+                let view = UIView()
+                view.backgroundColor = .clear
+                return view
             case .loginRoute(_):
                 titleLabel.text = "이메일"
                 titleLabel.textColor = .lightGray
@@ -347,8 +367,6 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
                 titleLabel.textColor = .lightGray
                 titleLabel.font = UIFont.systemFont(ofSize: 14)
                 headerView.backgroundColor = UIColor.clear
-            default:
-                return nil
         }
         
         headerView.addSubview(titleLabel)
@@ -376,27 +394,27 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch dataSource[section] {
-            case .loginRoute(_), .name(_), .nickName(_), .phoneNumber(_), .address(_):
-                return 30 // 원하는 높이
-            default:
+            case .profileImage(_):
                 return 0
+            default:
+                return 30
         }
     }
     
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch dataSource[indexPath.section] {
-            case .profileImage(_):
-                return 182 // 이미지뷰의 높이 + 상하 패딩
-            default:
-                return UITableView.automaticDimension
-        }
+        return UITableView.automaticDimension
     }
 
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        switch dataSource[indexPath.section] {
+            case .profileImage(_):
+                return 182
+            default:
+                return 80
+        }
     }
     
     

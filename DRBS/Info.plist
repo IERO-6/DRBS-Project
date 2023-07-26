@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>DRBS를 사용하기 위해서 카메라 권한이 필요합니다.</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>fc2f0b4884f1139a979ec7507db4aab8</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
