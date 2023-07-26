@@ -12,41 +12,33 @@ import SnapKit
 
 class RecommandVC: UIViewController {
     
- 
-    @IBOutlet var imageView: UIImageView!
-//    @IBOutlet var spinWheelView: SpinWheelView!
-    
-    
-    
     //Models와 소통하기위한 변수
-    var roulletManager = RoulletModel()
-    var colorSet = ColorSet()
+    private var roulletManager = RoulletModel()
+    private var colorSet = ColorSet()
     
-    var allFoodButton: UIButton!
-    var chineseFoodButton: UIButton!
-    var japaneseFoodButton: UIButton!
-    var koreanFoodButton: UIButton!
-    var westernFoodButton: UIButton!
-    var vietnamFoodButton: UIButton!
-    var mexicoFoodButton: UIButton!
-    var healthyFoodButton: UIButton!
-    var nameIndex: Int = 0
-    var indexPickerView: UIPickerView!
-    
+    private var allFoodButton: UIButton!
+    private var chineseFoodButton: UIButton!
+    private var japaneseFoodButton: UIButton!
+    private var koreanFoodButton: UIButton!
+    private var westernFoodButton: UIButton!
+    private var vietnamFoodButton: UIButton!
+    private var mexicoFoodButton: UIButton!
+    private var healthyFoodButton: UIButton!
+    private var nameIndex: Int = 0
+    private var indexPickerView: UIPickerView!
     
     private lazy var spinWheelView = SpinWheelView().then {
           $0.translatesAutoresizingMaskIntoConstraints = false
       }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureNav()
-        
         setButton()
         pickerViewSetUp()
         spinWheelViewSetUp()
-
+        arrowImageVIewSetUp()
     }
     
     func spinWheelViewSetUp() {
@@ -59,7 +51,24 @@ class RecommandVC: UIViewController {
         spinWheelView.snp.makeConstraints { make in
             make.height.equalTo(300)
             make.width.equalTo(300)
-            make.top.equalToSuperview().offset(310)
+            make.top.equalToSuperview().offset(325)
+            make.centerX.equalToSuperview()
+        }
+    }
+    
+    func arrowImageVIewSetUp() {
+        let arrowImageVIew: UIImageView = {
+            let arrowImage = UIImageView()
+            arrowImage.image = UIImage(named: "arrow2")
+            arrowImage.translatesAutoresizingMaskIntoConstraints = false
+            return arrowImage
+        }()
+        view.addSubviews(arrowImageVIew)
+        
+        arrowImageVIew.snp.makeConstraints { make in
+            make.height.equalTo(45)
+            make.width.equalTo(45)
+            make.top.equalToSuperview().offset(280)
             make.centerX.equalToSuperview()
         }
     }
@@ -134,12 +143,11 @@ class RecommandVC: UIViewController {
             $0.layer.cornerRadius = 7
             $0.layer.masksToBounds = true
             
-            
             // 버튼 오토레이아웃
             $0.snp.makeConstraints { make in
                 make.height.equalTo(30)
                 make.width.equalTo(80)
-                make.bottom.equalToSuperview().offset(-150)
+                make.bottom.equalToSuperview().offset(-160)
                 make.centerX.equalToSuperview()
             }
         }
@@ -322,7 +330,6 @@ class RecommandVC: UIViewController {
         let index = indexPickerView.selectedRow(inComponent: 0)
         print("spin wheel \(spinWheelView.items[index].text)")
         spinWheelView.spinWheel(index)
-        
     }
     
     @objc func allButtonTapped(sender: UIButton) {
